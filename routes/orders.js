@@ -1,10 +1,11 @@
 const express = require('express');
 const router  = express.Router();
 
-module.exports = (db) => {
+// Sends an object of all data in DB orders table
+module.exports = (pool) => {
   router.get("/", (req, res) => {
 
-    db.query(`SELECT * FROM orders;`)
+    pool.query(`SELECT * FROM orders;`)
       .then(data => {
         const orders = data.rows;
         res.json({ orders });
