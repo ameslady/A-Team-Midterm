@@ -36,17 +36,16 @@ app.use(
 // Serves our static files in public directory
 app.use(express.static("public"));
 
-// Database Routes for each Resource
-// const batteryRoutes = require("./routes/Xbatteries"); <--might not need
+// Routes for each Resource
+const indexRoutes = require("./routes/index");
 const orderRoutes = require("./routes/orders");
-
-// Page Routes
-const pageRoutes = require("./routes/pages");
+const adminRoutes = require("./routes/admin");
 
 // Mount all resource routes
-// app.use("/batteries", batteryRoutes(pool)); <--might not need
+app.use("/", indexRoutes(pool));
 app.use("/orders", orderRoutes(pool));
-app.use("/", pageRoutes(pool));
+app.use("/admin", adminRoutes(pool));
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
