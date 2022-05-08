@@ -37,16 +37,16 @@ app.use(
 app.use(express.static("public"));
 
 // Database Routes for each Resource
-const batteryRoutes = require("./routes/batteries");
+// const batteryRoutes = require("./routes/Xbatteries"); <--might not need
 const orderRoutes = require("./routes/orders");
 
 // Page Routes
 const pageRoutes = require("./routes/pages");
 
 // Mount all resource routes
-app.use("/batteries", batteryRoutes(pool));
+// app.use("/batteries", batteryRoutes(pool)); <--might not need
 app.use("/orders", orderRoutes(pool));
-app.use("/", pageRoutes());
+app.use("/", pageRoutes(pool));
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

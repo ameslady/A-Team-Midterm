@@ -1,10 +1,20 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 // Renders all our page views
-module.exports = () => {
+module.exports = (pool) => {
+  // Pulling from batteries table and displaying data on home page
   router.get("/", (req, res) => {
-    res.render("index");
+    pool.query(`SELECT * FROM batteries;`)
+      .then(data => {
+        const templateVars = { name: data.rows[0].name };
+        res.render("index", templateVars);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
   router.get("/admin", (req, res) => {
