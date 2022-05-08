@@ -1,16 +1,9 @@
-/*
- * All routes for Batteriess are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
-
 const express = require('express');
 const router  = express.Router();
 
-module.exports = (db) => {
+module.exports = (pool) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM batteries;`)
+    pool.query(`SELECT * FROM batteries;`)
       .then(data => {
         const batteries = data.rows;
         res.json({ batteries: batteries });
