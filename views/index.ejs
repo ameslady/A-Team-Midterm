@@ -27,7 +27,7 @@
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
 
-    <title>Home Page</title>
+    <title>Home | Robo Battery Cafe</title>
   </head>
 
   <%- include('partials/_header') %>
@@ -52,7 +52,7 @@
             <td><%= batteries[battery].name %></td>
             <td>$<%= batteries[battery].cost / 100 %></td>
             <td><%= batteries[battery].description %></td>
-            <td><%= batteries[battery].prep_time %></td>
+            <td><%= batteries[battery].prep_time %> mins</td>
             <td><%= batteries[battery].image %></td>
           </tr>
           <% } %>
