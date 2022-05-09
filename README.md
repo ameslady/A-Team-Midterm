@@ -1,4 +1,4 @@
-Robot Restaurant Midterm 🤖
+Robo Battery Cafe Midterm 🤖
 =========
 
 Battery ordering/pick-up experience for a fictitious restaurant catered to hungry robots. Yum! 🔋
