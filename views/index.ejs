@@ -56,8 +56,7 @@
             <td>$<%= batteries[battery].cost / 100 %></td>
             <td><%= batteries[battery].description %></td>
             <td><%= batteries[battery].prep_time %> mins</td>
-            <!-- <td><%= batteries[battery].image %></td> -->
-            <td><img src="/images/small_batteries.png" style="width:100px; height:auto;"/></td>
+            <td><img src="<%= batteries[battery].image %>" style="width:100px; height:auto;"/></td>
           </tr>
           <% } %>
         </tbody>
