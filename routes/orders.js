@@ -1,14 +1,32 @@
 const express = require('express');
 const router = express.Router();
 
-// Renders all our page views
 module.exports = (pool) => {
-  // Pulling from orders table and displaying data on order page
+  // Pulls a specific customers order details and display on order #id page
   router.get("/", (req, res) => {
-    pool.query(`SELECT * FROM orders;`)
+    pool.query(`SELECT orders.id,
+                    battery_orders.battery_id,
+                    batteries.name,
+                    battery_orders.quantity,
+                    batteries.cost as price,
+                    orders.created_at,
+                    orders.active,
+                    sum(batteries.cost * battery_orders.quantity) as total,
+                    sum(batteries.prep_time) as total_prep
+                FROM orders
+                JOIN battery_orders ON orders.id = order_id
+                JOIN batteries ON batteries.id = battery_id
+                WHERE battery_orders.order_id = 1
+                GROUP BY orders.id, battery_orders.battery_id, batteries.name, battery_orders.quantity, batteries.cost, orders.created_at, orders.active
+                ORDER BY orders.id;`)
       .then(data => {
-        //const templateVars = { name: data.rows[0].name };
-        res.render("orders");
+        const customerOrder = {};
+        for (const item of data.rows) {
+          customerOrder[item.battery_id] = item;
+        }
+        console.log("🚀 ~ file: admin.js ~ line 18 ~ router.get ~ customerOrders", customerOrder);
+        const templateVars = { customerOrder };
+        res.render("orders", templateVars);
       })
       .catch(err => {
         res
@@ -16,6 +34,8 @@ module.exports = (pool) => {
           .json({ error: err.message });
       });
   });
+
+
 
   return router;
 };

@@ -1,3 +1,4 @@
+-- Active Orders Query
 SELECT orders.id, customers.name as customer, orders.created_at as time_of_order, orders.active as status, sum(batteries.cost * battery_orders.quantity) as total
 FROM orders
 JOIN customers ON customers.id = customer_id
