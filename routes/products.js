@@ -12,7 +12,7 @@ module.exports = (pool) => {
           batteries[item.id] = item;
         }
         const templateVars = { batteries };
-        res.render("index", templateVars);
+        res.render("products", templateVars);
       })
       .catch(err => {
         res

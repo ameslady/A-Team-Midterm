@@ -37,12 +37,12 @@ app.use(
 app.use(express.static("public"));
 
 // Routes for each Resource
-const indexRoutes = require("./routes/index");
+const productsRoutes = require("./routes/products");
 const orderRoutes = require("./routes/orders");
 const adminRoutes = require("./routes/admin");
 
 // Mount all resource routes
-app.use("/", indexRoutes(pool));
+app.use("/", productsRoutes(pool));
 app.use("/orders", orderRoutes(pool));
 app.use("/admin", adminRoutes(pool));
 
