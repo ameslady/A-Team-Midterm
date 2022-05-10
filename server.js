@@ -7,6 +7,8 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
+
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -19,10 +21,9 @@ pool.connect();
 // The :status token will be colored red for server error codes,
 // yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan("dev"));
-
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
-
+app.use(bodyParser.urlencoded({extended: true}));
 // Do we need this? Are we going to use SASS?
 app.use(
   "/styles",

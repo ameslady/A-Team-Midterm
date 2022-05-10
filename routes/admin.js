@@ -15,7 +15,6 @@ module.exports = (pool) => {
         for (const order of data.rows) {
           activeOrders[order.id] = order;
         }
-        console.log("🚀 ~ file: admin.js ~ line 18 ~ router.get ~ activeOrders", activeOrders);
         const templateVars = { activeOrders };
         res.render("admin", templateVars);
       })
