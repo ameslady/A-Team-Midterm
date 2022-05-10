@@ -6,22 +6,25 @@ module.exports = (pool) => {
   router.get("/", (req, res) => {
     const orderSession = req.params.id;
 
-    const completeOrdersQuery = pool.query(`SELECT orders.id, customers.name, orders.created_at, orders.active, sum(batteries.cost * battery_orders.quantity) as total
-                            FROM orders
-                            JOIN customers ON customers.id = customer_id
-                            JOIN battery_orders ON orders.id = order_id
-                            JOIN batteries ON batteries.id = battery_id
-                            WHERE active = false
-                            GROUP BY orders.id, customers.name, orders.created_at, orders.active
-                            ORDER BY orders.id;`);
-    const activeOrdersQuery = pool.query(`SELECT orders.id, customers.name, orders.created_at, orders.active, sum(batteries.cost * battery_orders.quantity) as total
-                          FROM orders
-                          JOIN customers ON customers.id = customer_id
-                          JOIN battery_orders ON orders.id = order_id
-                          JOIN batteries ON batteries.id = battery_id
-                          WHERE active = true
-                          GROUP BY orders.id, customers.name, orders.created_at, orders.active
-                          ORDER BY orders.id;`);
+    const activeOrdersQuery =
+    pool.query(`SELECT orders.id, customers.name, orders.created_at, orders.active, sum(batteries.cost * battery_orders.quantity) as total
+    FROM orders
+    JOIN customers ON customers.id = customer_id
+    JOIN battery_orders ON orders.id = order_id
+    JOIN batteries ON batteries.id = battery_id
+    WHERE active = true
+    GROUP BY orders.id, customers.name, orders.created_at, orders.active
+    ORDER BY orders.id;`);
+
+    const completeOrdersQuery =
+    pool.query(`SELECT orders.id, customers.name, orders.created_at, orders.active, sum(batteries.cost * battery_orders.quantity) as total
+    FROM orders
+    JOIN customers ON customers.id = customer_id
+    JOIN battery_orders ON orders.id = order_id
+    JOIN batteries ON batteries.id = battery_id
+    WHERE active = false
+    GROUP BY orders.id, customers.name, orders.created_at, orders.active
+    ORDER BY orders.id;`);
 
     Promise.all([activeOrdersQuery, completeOrdersQuery])
       .then(data => {
@@ -44,6 +47,7 @@ module.exports = (pool) => {
           .json({ error: err.message });
       });
   });
+
   // updates an orders active status to false in DB
   router.post("/:id", (req, res) => {
     const updateOrderQuery = `UPDATE orders SET active = false WHERE id = $1 RETURNING *;`
@@ -58,10 +62,6 @@ module.exports = (pool) => {
           .json({ error: err.message });
       });
   });
-
-
-
-
 
   return router;
 };

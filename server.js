@@ -3,7 +3,6 @@ require("dotenv").config();
 
 // Web server config
 const PORT = process.env.PORT || 8080;
-const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -29,16 +28,6 @@ app.use(cookieSession({
   name: 'session',
   keys: ['hubbabubba']
 }));
-
-// Do we need this? Are we going to use SASS?
-app.use(
-  "/styles",
-  sassMiddleware({
-    source: __dirname + "/styles",
-    destination: __dirname + "/public/styles",
-    isSass: false, // false => scss, true => sass
-  })
-);
 
 // Serves our static files in public directory
 app.use(express.static("public"));
