@@ -15,7 +15,9 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/admin">Admin</a>
-        <a class="nav-item nav-link" href="/orders">Order #</a>
+        <% if (orderSession) { %>
+        <a class="nav-item nav-link" href="/orders/<%= orderSession %>">Order #<%= orderSession %></a>
+        <% }; %>
       </div>
     </div>
     <div class="navbar-nav ml-auto" id="start_order_button">

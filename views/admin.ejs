@@ -33,7 +33,7 @@
 
     <%- include('partials/_header') %>
 
-    <h2>Admin Page</h2>
+    <h2>Active Orders</h2>
 
     <div>
       <table class="table">
@@ -50,13 +50,43 @@
         <tbody>
           <tr>
             <% for(const order in activeOrders) { %>
-            <td><%= activeOrders[order].id %></td>
-            <td><%= activeOrders[order].name %></td>
-            <td>$<%= activeOrders[order].total / 100 %></td>
-            <td>
-              <%= activeOrders[order].created_at.toTimeString().slice(0, 5) %>
-            </td>
-            <td><%= activeOrders[order].active %></td>
+              <td><%= activeOrders[order].id %></td>
+              <td><%= activeOrders[order].name %></td>
+              <td>$<%= activeOrders[order].total / 100 %></td>
+              <td>
+                <%= activeOrders[order].created_at.toTimeString().slice(0, 5) %>
+              </td>
+            <form action="/admin/<%= activeOrders[order].id %>" method="POST">
+              <td><button type="submit" class="btn btn-outline-dark">Complete Order</button></td>
+            </form>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Complete Orders</h2>
+
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col">Customer</th>
+            <th scope="col">Total</th>
+            <th scope="col">Time of Order</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <% for(const order in completeOrders) { %>
+              <td><%= completeOrders[order].id %></td>
+              <td><%= completeOrders[order].name %></td>
+              <td>$<%= completeOrders[order].total / 100 %></td>
+              <td><%= completeOrders[order].created_at.toTimeString().slice(0, 5) %></td>
+              <td><%= completeOrders[order].active %></td>
           </tr>
           <% } %>
         </tbody>
