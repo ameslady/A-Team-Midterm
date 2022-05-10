@@ -3,7 +3,9 @@
     "commonjs": true,
     "es6": true,
     "node": true,
-    "mocha": true
+    "mocha": true,
+    "jquery": true,
+    "document": true
   },
   "extends": "eslint:recommended",
   "globals": {
@@ -11,7 +13,7 @@
     "SharedArrayBuffer": "readonly"
   },
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": 2020
   },
   "rules": {
     "indent": [
