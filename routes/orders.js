@@ -4,10 +4,15 @@ const router = express.Router();
 module.exports = (pool) => {
   // Pulls a specific customers order details and display on order #id page
   router.get("/:id", (req, res) => {
-    const orderSession = req.params.id;
+    const orderSession = req.session.order_id;
+
+    // checks for valid session
+    if (!orderSession || orderSession !== Number(req.params.id)) {
+      return res.status(400).send("Unauthorized access!");
+    };
 
     const orderDetails =
-    pool.query(`SELECT orders.id, orders.created_at, sum(batteries.prep_time) as total_prep, sum(batteries.cost * battery_orders.quantity) as total, orders.active
+      pool.query(`SELECT orders.id, orders.created_at, sum(batteries.prep_time) as total_prep, sum(batteries.cost * battery_orders.quantity) as total, orders.active
     FROM orders
     JOIN battery_orders ON orders.id = order_id
     JOIN batteries ON batteries.id = battery_id
@@ -16,7 +21,7 @@ module.exports = (pool) => {
     ORDER BY orders.id;`);
 
     const orderItems =
-    pool.query(`SELECT batteries.id, batteries.name, battery_orders.quantity, batteries.cost as price
+      pool.query(`SELECT batteries.id, batteries.name, battery_orders.quantity, batteries.cost as price
     FROM batteries
     JOIN battery_orders ON batteries.id = battery_id
     WHERE battery_orders.order_id = ${req.params.id};`);
@@ -53,6 +58,16 @@ module.exports = (pool) => {
       2: { id: req.body.medBattery, quantity: req.body.quantity_med },
       3: { id: req.body.lgBattery, quantity: req.body.quantity_lg },
     };
+    // removes items that weren't selected
+    for (const key in batteries) {
+      if (!batteries[key].id) {
+        delete batteries[key];
+      }
+    }
+
+    console.log("🦋 ~ batteries keys", Object.keys(batteries).length);
+
+    if (!req.body.name || !req.body.phone || Object.keys(batteries).length === 0) { return res.status(403).send("Name, phone, or item selection are not valid!"); };
 
     pool.query(addCustomerQuery, [`${req.body.name}`, `${req.body.phone}`])
       // adds the new customers to db
@@ -66,6 +81,7 @@ module.exports = (pool) => {
       // links the batteries and quantity to the new order
       .then(newOrder => {
         for (const battery in batteries) {
+          // if (!batteries[battery].id) continue;
           pool.query(matchBatteryOrder, [`${batteries[battery].id}`, `${newOrder.rows[0].id}`, `${batteries[battery].quantity}`]);
         }
         req.session.order_id = newOrder.rows[0].id; // saves order id as a session cookie
@@ -73,7 +89,7 @@ module.exports = (pool) => {
       })
       .catch(err => {
         res.status(500)
-        .json({ error: err.message });
+          .json({ error: err.message });
       });
   });
 

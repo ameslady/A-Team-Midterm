@@ -5,6 +5,8 @@ $(document).ready(function() {
   $("#place_order_button").on('click', function() {
     const orderForm = $("#orderForm");
     const menu = $(".menu");
+
+    // for aaron: toggle form on, toggle menu off
     orderForm.removeClass("hidden");
     menu.addClass("hidden");
   });
