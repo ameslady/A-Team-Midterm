@@ -17,8 +17,19 @@
 
 // };
 
-// $(document).ready(function() {
-//   event.preventDefault();
+$(document).ready(function() {
+  // event.preventDefault();
+  $("#place_order_button").on('click', function() {
+    // alert("place order was clicked!");
+
+    const orderForm = $(".orderForm");
+    orderForm.removeClass("orderForm");
+
+    const menu = $(".menu");
+    menu.addClass("hidden");
+});
 
 
-// });
+
+
+});
