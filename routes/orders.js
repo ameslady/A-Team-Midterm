@@ -5,6 +5,7 @@ const router = express.Router();
 module.exports = (pool) => {
   // Pulls a specific customers order details and display on order #id page
   router.get("/:id", (req, res) => {
+    const orderSession = req.params.id;
     const orderDetails = pool.query(`SELECT orders.id, orders.created_at, sum(batteries.prep_time) as total_prep, sum(batteries.cost * battery_orders.quantity) as total, orders.active
                                     FROM orders
                                     JOIN battery_orders ON orders.id = order_id
@@ -30,7 +31,7 @@ module.exports = (pool) => {
           orderItems[item.id] = item;
         }
 
-        const templateVars = { orderDetails, orderItems };
+        const templateVars = { orderSession, orderDetails, orderItems };
         res.render("orders", templateVars);
       })
       .catch(err => {

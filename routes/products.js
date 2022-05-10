@@ -16,7 +16,7 @@ module.exports = (pool) => {
         for (const item of data.rows) {
           batteries[item.id] = item;
         }
-        const templateVars = { batteries };
+        const templateVars = { orderSession, batteries };
         res.render("products", templateVars);
       })
       .catch(err => {
