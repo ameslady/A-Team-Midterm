@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 module.exports = (pool) => {
   // Pulls a specific customers order details and display on order #id page
   router.get("/", (req, res) => {
@@ -36,16 +37,37 @@ module.exports = (pool) => {
           .status(500)
           .json({ error: err.message });
       });
+    });
 
-    // router.post("/", (req, res) => {
-    //   pool.query(';')
-    //     .then(() => {
+    router.post("/", (req, res) => {
 
-    //     })
-    //     .catch(() => {
+      const formParams = [`${req.body.name}`, `${req.body.phone}`, `${req.body.smallBattery}`];
 
-    //     });
-    // });
+
+      const addCustomerQuery = `INSERT INTO customers (name, phone_number) VALUES ($1, $2) RETURNING *;`;
+      const getCustomerQuery = `SELECT id FROM customers WHERE id = $1;`;
+      const createOrderQuery = `INSERT INTO orders (customer_id) VALUES ($1);`;
+      const matchBatteryOrder = `INSERT INTO battery_orders (battery_id, order_id, quantity) VALUES ($1, $2, 1) RETURNING *;`;
+
+
+
+
+    console.log("🚀 ~ file: orders.js ~ line 43 ~ router.post ~ req", req.body);
+
+
+
+    pool.query(`INSERT INTO customers (name, phone_number)
+    VALUES ($1, $2)
+    RETURNING *;
+    `, [`${req.body.name}`, `${req.body.phone}`])
+      .then((customer) => {
+        console.log(customer.rows);
+        res.status(200);
+        res.send("sucess");
+      })
+      .catch(() => {
+
+      });
   });
 
   return router;
