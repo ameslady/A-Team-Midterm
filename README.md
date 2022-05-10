@@ -42,6 +42,8 @@ Battery ordering/pick-up experience for a fictitious restaurant catered to hungr
 - Chalk
 - dotenv
 - SASS
+- Body Parser
+- Cookie Session
 
 ## Roadmap
 

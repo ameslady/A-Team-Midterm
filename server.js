@@ -8,6 +8,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const cookieSession = require('cookie-session');
 
 
 // PG database client/connection setup
@@ -24,6 +25,11 @@ app.use(morgan("dev"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['hubbabubba']
+}));
+
 // Do we need this? Are we going to use SASS?
 app.use(
   "/styles",
