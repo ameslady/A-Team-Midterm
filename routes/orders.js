@@ -40,35 +40,33 @@ module.exports = (pool) => {
     });
 
     router.post("/", (req, res) => {
-
-      const formParams = [`${req.body.name}`, `${req.body.phone}`, `${req.body.smallBattery}`];
-
-
+      // adds the new customers to db
       const addCustomerQuery = `INSERT INTO customers (name, phone_number) VALUES ($1, $2) RETURNING *;`;
-      const getCustomerQuery = `SELECT id FROM customers WHERE id = $1;`;
-      const createOrderQuery = `INSERT INTO orders (customer_id) VALUES ($1);`;
-      const matchBatteryOrder = `INSERT INTO battery_orders (battery_id, order_id, quantity) VALUES ($1, $2, 1) RETURNING *;`;
+      pool.query(addCustomerQuery, [`${req.body.name}`, `${req.body.phone}`])
+      .then(customer => {
+        console.log("🦋 New Customer ID:", customer.rows[0].id);
 
+        // creates a new order using the customers id
+        const createOrderQuery = `INSERT INTO orders (customer_id) VALUES ($1) RETURNING *;`;
+        pool.query(createOrderQuery, [`${customer.rows[0].id}`])
+        .then(newOrder => {
+          console.log("🦋 Customer's Order:", newOrder.rows[0].id);
 
-
-
-    console.log("🚀 ~ file: orders.js ~ line 43 ~ router.post ~ req", req.body);
-
-
-
-    pool.query(`INSERT INTO customers (name, phone_number)
-    VALUES ($1, $2)
-    RETURNING *;
-    `, [`${req.body.name}`, `${req.body.phone}`])
-      .then((customer) => {
-        console.log(customer.rows);
-        res.status(200);
-        res.send("sucess");
+          // links the batteries and quantity to the new order
+          const matchBatteryOrder = `INSERT INTO battery_orders (battery_id, order_id, quantity) VALUES ($1, $2, $3) RETURNING *;`;
+          const quantity = req.body.quantity;
+          pool.query(matchBatteryOrder, [`${req.body.smallBattery}`, `${newOrder.rows[0].id}`, `${quantity}`])
+          .then(orderItems => {
+            console.log("🦋 Order Items", orderItems.rows);
+          })
+        })
+        res.status(200).send("sucess");
       })
       .catch(() => {
-
+        res.status(500).json({ error: err.message });
       });
   });
+
 
   return router;
 };
