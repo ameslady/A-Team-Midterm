@@ -4,12 +4,10 @@ const router = express.Router();
 module.exports = (pool) => {
   // Pulls from batteries table and displays data on home page (menu)
   router.get("/", (req, res) => {
-
     const orderSession = req.session.order_id;
-    console.log("🎲 ~ orderSession", orderSession);
+    const productQuery = `SELECT * FROM batteries;`;
 
-
-    pool.query(`SELECT * FROM batteries;`)
+    pool.query(productQuery)
       .then(data => {
         const batteries = {};
 
