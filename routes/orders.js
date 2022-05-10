@@ -37,36 +37,40 @@ module.exports = (pool) => {
           .status(500)
           .json({ error: err.message });
       });
-    });
+  });
 
-    router.post("/", (req, res) => {
+  router.post("/", (req, res) => {
 
-      const formParams = [`${req.body.name}`, `${req.body.phone}`, `${req.body.smallBattery}`];
+    // queries
+    const addCustomerQuery = `INSERT INTO customers (name, phone_number) VALUES ($1, $2) RETURNING *;`;
+    const createOrderQuery = `INSERT INTO orders (customer_id) VALUES ($1) RETURNING *;`;
+    const matchBatteryOrder = `INSERT INTO battery_orders (battery_id, order_id, quantity) VALUES ($1, $2, $3) RETURNING *;`;
+    const batteries = {
+      1: { id: req.body.smallBattery, quantity: req.body.quantity_sm },
+      2: { id: req.body.medBattery, quantity: req.body.quantity_med },
+      3: { id: req.body.lgBattery, quantity: req.body.quantity_lg },
+    };
 
-
-      const addCustomerQuery = `INSERT INTO customers (name, phone_number) VALUES ($1, $2) RETURNING *;`;
-      const getCustomerQuery = `SELECT id FROM customers WHERE id = $1;`;
-      const createOrderQuery = `INSERT INTO orders (customer_id) VALUES ($1);`;
-      const matchBatteryOrder = `INSERT INTO battery_orders (battery_id, order_id, quantity) VALUES ($1, $2, 1) RETURNING *;`;
-
-
-
-
-    console.log("🚀 ~ file: orders.js ~ line 43 ~ router.post ~ req", req.body);
-
-
-
-    pool.query(`INSERT INTO customers (name, phone_number)
-    VALUES ($1, $2)
-    RETURNING *;
-    `, [`${req.body.name}`, `${req.body.phone}`])
-      .then((customer) => {
-        console.log(customer.rows);
-        res.status(200);
-        res.send("sucess");
+    pool.query(addCustomerQuery, [`${req.body.name}`, `${req.body.phone}`])
+      // adds the new customers to db
+      .then(newCustomer => {
+        return newCustomer.rows[0].id; //return new customer id
       })
-      .catch(() => {
+      // creates a new order using the customers id
+      .then(newCustomerID => {
+        return pool.query(createOrderQuery, [newCustomerID]); //returns new order entry
+      })
+      // links the batteries and quantity to the new order
+      .then(newOrder => {
 
+        for (const battery in batteries) {
+          // console.log("🦋 Battery ID:", batteries[battery].id);
+          pool.query(matchBatteryOrder, [`${batteries[battery].id}`, `${newOrder.rows[0].id}`, `${batteries[battery].quantity}`]);
+        }
+        res.redirect("/admin");
+      })
+      .catch(err => {
+        res.status(500).json({ error: err.message });
       });
   });
 
