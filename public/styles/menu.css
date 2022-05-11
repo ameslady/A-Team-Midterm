@@ -1,0 +1,9 @@
+.menuContainer {
+  text-align: center;
+  margin: 30px;
+}
+
+.menuContainer img {
+  width: 100px;
+  height: auto;
+}

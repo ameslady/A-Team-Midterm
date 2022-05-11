@@ -4,7 +4,7 @@ $(document).ready(function() {
   // replaces menu w/ the order form
   $("#place_order_button").on('click', function() {
     const orderForm = $("#orderForm");
-    const menu = $(".menu");
+    const menu = $("#menu");
 
     // toggle form on, toggle menu off
     orderForm.removeClass("hidden");
