@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const twilio = require('twilio');
 
-
-module.exports = (pool) => {
+module.exports = (pool, client) => {
   // display all active orders from DB
   router.get("/", (req, res) => {
     const orderSession = req.params.id;
@@ -67,14 +65,14 @@ module.exports = (pool) => {
 
         res.redirect("/admin");
 
-        // sends a text to the customer when order is ready for pick up
-        // client.messages
-        //   .create({
-        //     body: `Hi ${customerName}! Your order #${req.params.id} is ready for pick-up.`,
-        //     to: `+1${customerPhone}`, // Text this number
-        //     from: '+12073062186', // From a valid Twilio number
-        //   })
-        //   .then((message) => console.log('Twilio Text sent:', message.sid));
+        //sends a text to the customer when order is ready for pick up
+        client.messages
+          .create({
+            body: `Hi ${customerName}! Your order #${req.params.id} is ready for pick-up.`,
+            to: `+1${customerPhone}`, // Text this number
+            from: '+12073062186', // From a valid Twilio number
+          })
+          .then((message) => console.log('Twilio Text sent:', message.sid));
 
 
       })

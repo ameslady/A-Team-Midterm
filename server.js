@@ -10,6 +10,10 @@ const bodyParser = require("body-parser");
 const cookieSession = require('cookie-session');
 const twilio = require('twilio');
 
+// twilio
+const accountSid = process.env.TWILIO_ACCOUNT_SID; // Your Account SID from www.twilio.com/console
+const authToken = process.env.TWILIO_AUTH_TOKEN; // Your Auth Token from www.twilio.com/console
+const client = new twilio(accountSid, authToken);
 
 
 // PG database client/connection setup
@@ -41,8 +45,9 @@ const adminRoutes = require("./routes/admin");
 
 // Mount all resource routes
 app.use("/", productsRoutes(pool));
-app.use("/orders", orderRoutes(pool));
-app.use("/admin", adminRoutes(pool));
+app.use("/orders", orderRoutes(pool, client));
+app.use("/admin", adminRoutes(pool, client));
+
 
 
 app.listen(PORT, () => {
