@@ -12,8 +12,10 @@
         <% }; %>
       </div>
     </div>
+    <% if (!orderSession) { %>
     <div class="navbar-nav ml-auto" id="place_order_button">
       <button type="button" class="btn btn-primary">Place Order</button>
     </div>
+    <% }; %>
   </nav>
 </header>

@@ -7,7 +7,7 @@ module.exports = (pool, client) => {
     const orderSession = req.params.id;
 
     const activeOrdersQuery =
-    pool.query(`SELECT orders.id, customers.name, orders.created_at, orders.active, sum(batteries.cost * battery_orders.quantity) as total
+    pool.query(`SELECT orders.id, customers.name, orders.created_at, orders.active, sum(batteries.prep_time) as total_prep, sum(batteries.cost * battery_orders.quantity) as total
     FROM orders
     JOIN customers ON customers.id = customer_id
     JOIN battery_orders ON orders.id = order_id
@@ -17,7 +17,7 @@ module.exports = (pool, client) => {
     ORDER BY orders.id;`);
 
     const completeOrdersQuery =
-    pool.query(`SELECT orders.id, customers.name, orders.created_at, orders.active, sum(batteries.cost * battery_orders.quantity) as total
+    pool.query(`SELECT orders.id, customers.name, orders.created_at, orders.active, sum(batteries.prep_time) as total_prep, sum(batteries.cost * battery_orders.quantity) as total
     FROM orders
     JOIN customers ON customers.id = customer_id
     JOIN battery_orders ON orders.id = order_id
@@ -73,8 +73,6 @@ module.exports = (pool, client) => {
             from: '+12073062186', // From a valid Twilio number
           })
           .then((message) => console.log('Twilio Text sent:', message.sid));
-
-
       })
       .catch(err => {
         res
@@ -82,6 +80,7 @@ module.exports = (pool, client) => {
           .json({ error: err.message });
       });
   });
+
 
   return router;
 };
