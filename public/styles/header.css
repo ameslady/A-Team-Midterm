@@ -1,0 +1,12 @@
+header {
+  height: 800px;
+  width: 100vw;
+  background-image: url("../images/header-img.jpeg");
+}
+
+.heroHeader h2 {
+  font-family: "Roboto", sans-serif;
+  color: white;
+  margin-top: 250px;
+  font-size: 100px;
+}

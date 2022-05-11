@@ -1,0 +1,27 @@
+#orderForm {
+  padding-top: 50px;
+}
+
+#formCard {
+  width: 900px;
+  height: 400px;
+  margin: auto;
+  text-align: center;
+  background: transparent;
+  color: #2F2B34;
+  border: 3px solid #2F2B34;
+}
+
+.form-group {
+  margin: 1em;
+}
+
+#formCard button{
+  margin-top: 3em;
+}
+
+#formCard button:hover {
+  background-color: #FDDC99;
+  color: black;
+  transform: translateY(-2px);
+}
