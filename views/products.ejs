@@ -98,7 +98,7 @@
 
 
   <!-- Menu Layout -->
-  <div class="menuContainer">
+  <div class="menuContainer mx-auto">
     <header>
       <h2 class="text-center">Menu</h2>
     </header>
@@ -108,9 +108,9 @@
     <div class="row">
       <% for (const battery in batteries) { %>
         <% if (battery <= 3) { %>
-          <div class="card" style="width: 18rem;">
-            <img src="<%= batteries[battery].image %>"/>
+          <div class="card">
             <div class="card-body">
+              <img src="<%= batteries[battery].image %>"/>
               <h5 class="card-title"><%= batteries[battery].name %></h5>
               <span>$<%= batteries[battery].cost / 100 %></span>
               <hr class="solid">
@@ -121,14 +121,12 @@
         <% }; %>
       </div>
 
-      <br>
-
      <div class="row">
      <% for (const battery in batteries) { %>
         <% if (battery > 3) { %>
-          <div class="card" style="width: 18rem;">
-            <img src="<%= batteries[battery].image %>"/>
+          <div class="card">
             <div class="card-body">
+              <img src="<%= batteries[battery].image %>"/>
               <h5 class="card-title"><%= batteries[battery].name %></h5>
               <span>$<%= batteries[battery].cost / 100 %></span>
               <hr class="solid">
