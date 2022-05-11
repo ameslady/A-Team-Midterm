@@ -8,6 +8,13 @@ const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieSession = require('cookie-session');
+const twilio = require('twilio');
+
+
+//twilio
+const accountSid = 'ACc2e56c63ce1e2c689399e954d3517c86'; // Your Account SID from www.twilio.com/console
+const authToken = 'c40081ba0a91b2686b1d917587706f1e'; // Your Auth Token from www.twilio.com/console
+const client = new twilio(accountSid, authToken);
 
 
 // PG database client/connection setup

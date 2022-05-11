@@ -49,6 +49,7 @@ module.exports = (pool) => {
   });
 
   router.post("/", (req, res) => {
+
     const addCustomerQuery = `INSERT INTO customers (name, phone_number) VALUES ($1, $2) RETURNING *;`;
     const createOrderQuery = `INSERT INTO orders (customer_id) VALUES ($1) RETURNING *;`;
     const matchBatteryOrder = `INSERT INTO battery_orders (battery_id, order_id, quantity) VALUES ($1, $2, $3) RETURNING *;`;
@@ -81,11 +82,20 @@ module.exports = (pool) => {
       // links the batteries and quantity to the new order
       .then(newOrder => {
         for (const battery in batteries) {
-          // if (!batteries[battery].id) continue;
           pool.query(matchBatteryOrder, [`${batteries[battery].id}`, `${newOrder.rows[0].id}`, `${batteries[battery].quantity}`]);
         }
         req.session.order_id = newOrder.rows[0].id; // saves order id as a session cookie
         res.redirect(`/orders/${newOrder.rows[0].id}`);
+
+        // sends a text to the customer
+        client.messages
+          .create({
+            body: `Hi ${req.body.name}! Thanks for your order. Your order number is #${newOrder.rows[0].id}.`,
+            to: `+1${req.body.phone}`, // Text this number
+            from: '+12073062186', // From a valid Twilio number
+          })
+          .then((message) => console.log('Twilio Text sent:', message.sid));
+
       })
       .catch(err => {
         res.status(500)
