@@ -3,12 +3,6 @@ const router = express.Router();
 const twilio = require('twilio');
 
 
-// twilio -- this isn't needed in order.js but this file requires it???
-const accountSid = 'ACc2e56c63ce1e2c689399e954d3517c86'; // Your Account SID from www.twilio.com/console
-const authToken = 'c40081ba0a91b2686b1d917587706f1e'; // Your Auth Token from www.twilio.com/console
-const client = new twilio(accountSid, authToken);
-
-
 module.exports = (pool) => {
   // display all active orders from DB
   router.get("/", (req, res) => {
@@ -74,13 +68,13 @@ module.exports = (pool) => {
         res.redirect("/admin");
 
         // sends a text to the customer when order is ready for pick up
-        client.messages
-          .create({
-            body: `Hi ${customerName}! Your order #${req.params.id} is ready for pick-up.`,
-            to: `+1${customerPhone}`, // Text this number
-            from: '+12073062186', // From a valid Twilio number
-          })
-          .then((message) => console.log('Twilio Text sent:', message.sid));
+        // client.messages
+        //   .create({
+        //     body: `Hi ${customerName}! Your order #${req.params.id} is ready for pick-up.`,
+        //     to: `+1${customerPhone}`, // Text this number
+        //     from: '+12073062186', // From a valid Twilio number
+        //   })
+        //   .then((message) => console.log('Twilio Text sent:', message.sid));
 
 
       })

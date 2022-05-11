@@ -88,13 +88,13 @@ module.exports = (pool) => {
         res.redirect(`/orders/${newOrder.rows[0].id}`);
 
         // sends a text to the customer
-        client.messages
-          .create({
-            body: `Hi ${req.body.name}! Thanks for your order. Your order number is #${newOrder.rows[0].id}.`,
-            to: `+1${req.body.phone}`, // Text this number
-            from: '+12073062186', // From a valid Twilio number
-          })
-          .then((message) => console.log('Twilio Text sent:', message.sid));
+        // client.messages
+        //   .create({
+        //     body: `Hi ${req.body.name}! Thanks for your order. Your order number is #${newOrder.rows[0].id}.`,
+        //     to: `+1${req.body.phone}`, // Text this number
+        //     from: '+12073062186', // From a valid Twilio number
+        //   })
+        //   .then((message) => console.log('Twilio Text sent:', message.sid));
 
       })
       .catch(err => {
