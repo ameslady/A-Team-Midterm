@@ -44,6 +44,7 @@ Battery ordering/pick-up experience for a fictitious restaurant catered to hungr
 - SASS
 - Body Parser
 - Cookie Session
+- Twilio
 
 ## Roadmap
 
