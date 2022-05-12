@@ -4,7 +4,7 @@
 
 .orderDetails .card {
   width: 900px;
-  height: 500px;
+  /* height: 500px; */
   margin: auto;
   text-align: center;
   background-color: #212529;
@@ -23,8 +23,16 @@
   color: white;
 }
 
+
 .locationDetails .card {
   width: 20rem;
   margin: auto;
   margin-top: 1em;
 }
+
+.thank-you {
+  text-align: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+

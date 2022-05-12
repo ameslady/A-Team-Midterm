@@ -37,9 +37,10 @@
 
   <%- include('partials/_navbar') %>
 
+
   <div class="locationDetails">
     <div class="card">
-      <img class="card-img-top" id="googleImage" src="/images/robot_battery_cafe_googlemaps.png"/>
+      <img class="card-img-top" src="/images/robot_battery_cafe_googlemaps.png"/>
       <div class="card-body">
         <h5 class="card-title">Our Location</h5>
         <p class="card-text">1 Duckworth St, St. John's, NL A1C 1E3</p>
@@ -47,45 +48,46 @@
     </div>
   </div>
 
+  <div class ="thank-you"> <h2>Thank You For Your Order!</h2> </div>
 
-    <div class="orderDetails">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Your Order # <%= orderDetails[orderSession].id %></h5>
-            <hr class="solid">
-              <table class="table">
-                  <thead>
-                <tr>
-                  <th scope="col">Battery ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Price Per Product</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <% for(const order in orderItems) { %>
-                    <td><%= orderItems[order].id %></td>
-                    <td><%= orderItems[order].name %></td>
-                    <td>x <%= orderItems[order].quantity %></td>
-                    <td>$<%= orderItems[order].price / 100 %></td>
-                  </tr>
-                  <% } %>
-                </tbody>
-              </table>
+  <div class="orderDetails">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Your Order # <%= orderDetails[orderSession].id %></h5>
+      <hr class="solid">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Battery ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price Per Product</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% for(const order in orderItems) { %>
+              <td><%= orderItems[order].id %></td>
+              <td><%= orderItems[order].name %></td>
+              <td>x <%= orderItems[order].quantity %></td>
+              <td>$<%= orderItems[order].price / 100 %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
 
-              <span><strong>Total:</strong> $<%= orderDetails[orderSession].total / 100 %></span>
+        <span><strong>Total:</strong> $<%= orderDetails[orderSession].total / 100 %></span>
 
-            <p class="card-text">
-              <span><strong>Ordered at:</strong> <%= orderDetails[orderSession].created_at.toTimeString().slice(0, 5) %></span>
-              <span><strong>Prep Time:</strong> ~<%= orderDetails[orderSession].total_prep %> mins</span>
-              <span><strong>Status:</strong> In-progress</span>
-            </p>
-          </div>
-        </div>
-      </div>
+      <p class="card-text">
+        <span><strong>Ordered at:</strong> <%= orderDetails[orderSession].created_at.toTimeString().slice(0, 5) %></span>
+        <span><strong>Prep Time:</strong> ~<%= orderDetails[orderSession].total_prep %> mins</span>
+        <span><strong>Status:</strong> In-progress</span>
+      </p>
+    </div>
+  </div>
+  </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
+  </body>
 </html>
