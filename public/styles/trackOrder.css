@@ -1,4 +1,4 @@
-.orderDetails {
+/* .orderDetails {
   margin-top: 1em;
 }
 
@@ -27,4 +27,63 @@
   width: 20rem;
   margin: auto;
   margin-top: 1em;
+} */
+
+
+.customerOrderContainer {
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  margin: auto;
+  column-gap: 2em;
+}
+
+.customerOrderContainer .card-body {
+  font-family: "Josefin", sans-serif;
+}
+.customerOrderContainer h3 {
+  font-family: "Orbitron", sans-serif;
+  margin-bottom: 1em;
+}
+
+.orderDetails {
+  width: 60em;
+  text-align: center;
+  border: 3px solid #212529;
+  border-radius: 8px;
+}
+
+.orderDetails .card {
+  background-color: #212529;
+  color: white;
+}
+
+.orderDetails table {
+  color: white;
+}
+
+.orderDetails .orderTotal {
+ font-size: 20px;
+}
+
+.detailsFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1em;
+  font-size: 20px;
+}
+
+.restaurantDetails {
+  border: 3px solid #212529;
+  border-radius: 8px;
+}
+
+.restaurantDetails .card {
+  background-color: #212529;
+  color: white;
+}
+
+#map {
+  width: 500px;
 }
