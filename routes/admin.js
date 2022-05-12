@@ -81,6 +81,39 @@ module.exports = (pool, client) => {
       });
   });
 
+  // updates an orders preptime and notifys customer
+  router.post("/:id/update", (req, res) => {
+
+    const customerNameQuery = `SELECT customers.name, customers.phone_number
+    FROM orders
+    JOIN customers ON customers.id = customer_id
+    WHERE orders.id = ${req.params.id};`;
+
+    pool.query(customerNameQuery)
+      .then(data => {
+
+        const customerName = data.rows[0].name;
+        const customerPhone = data.rows[0].phone_number;
+        const newPrepTime = req.body.prepTime;
+
+        res.redirect("/admin");
+
+        // sends a text to the customer when order is ready for pick up
+        client.messages
+          .create({
+            body: `Hey ${customerName}! Your order #${req.params.id} is taking a little longer to prepare. It will be ready in ${newPrepTime} mins.`,
+            to: `+1${customerPhone}`, // Text this number
+            from: '+12073062186', // From a valid Twilio number
+          })
+          .then((message) => console.log('Twilio Text sent:', message.sid));
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
 
   return router;
 };

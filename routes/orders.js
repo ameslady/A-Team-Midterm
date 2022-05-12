@@ -97,6 +97,15 @@ module.exports = (pool, client) => {
           })
           .then((message) => console.log('Twilio Text sent:', message.sid));
 
+        // sends a text to the restaurant
+        client.messages
+        .create({
+          body: `Hi Robo Battery Cafe! You have a new order #${newOrder.rows[0].id} for ${req.body.name}.`,
+          to: `+1${process.env.RESTAURANT_NUM}`, // Text this number
+          from: '+12073062186', // From a valid Twilio number
+        })
+        .then((message) => console.log('Twilio Text sent:', message.sid));
+
       })
       .catch(err => {
         res.status(500)
