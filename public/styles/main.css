@@ -2,7 +2,7 @@ body,
 html {
   margin: 0;
   background: rgb(255,255,255);
-  background: linear-gradient(180deg, rgba(255,255,255,1) 75%, rgba(220,116,123,1) 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 75%, rgba(231,163,156,1) 100%)
 }
 
 .hidden {

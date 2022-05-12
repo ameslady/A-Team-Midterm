@@ -1,7 +1,7 @@
 header {
-  height: 800px;
+  height: 700px;
   width: 100vw;
-  background-image: url("../images/header-img.jpeg");
+  background-image: url("../images/header-img-crop.jpeg");
 }
 
 .heroHeader h2 {
