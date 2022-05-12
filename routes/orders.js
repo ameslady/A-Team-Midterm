@@ -12,7 +12,7 @@ module.exports = (pool, client) => {
     };
 
     const orderDetails =
-      pool.query(`SELECT orders.id, orders.created_at, sum(batteries.prep_time) as total_prep, sum(batteries.cost * battery_orders.quantity) as total, orders.active
+    pool.query(`SELECT orders.id, orders.created_at, sum(batteries.prep_time) as total_prep, sum(batteries.cost * battery_orders.quantity) as total, orders.active
     FROM orders
     JOIN battery_orders ON orders.id = order_id
     JOIN batteries ON batteries.id = battery_id
@@ -21,7 +21,7 @@ module.exports = (pool, client) => {
     ORDER BY orders.id;`);
 
     const orderItems =
-      pool.query(`SELECT batteries.id, batteries.name, battery_orders.quantity, batteries.cost as price
+    pool.query(`SELECT batteries.id, batteries.name, battery_orders.quantity, batteries.cost as price
     FROM batteries
     JOIN battery_orders ON batteries.id = battery_id
     WHERE battery_orders.order_id = ${req.params.id};`);
@@ -55,9 +55,12 @@ module.exports = (pool, client) => {
     const matchBatteryOrder = `INSERT INTO battery_orders (battery_id, order_id, quantity) VALUES ($1, $2, $3) RETURNING *;`;
 
     const batteries = {
-      1: { id: req.body.smallBattery, quantity: req.body.quantity_sm },
-      2: { id: req.body.medBattery, quantity: req.body.quantity_med },
-      3: { id: req.body.lgBattery, quantity: req.body.quantity_lg },
+      1: { id: req.body.tinyBattery, quantity: req.body.quantity_tiny },
+      2: { id: req.body.xsBattery, quantity: req.body.quantity_xs },
+      3: { id: req.body.smallBattery, quantity: req.body.quantity_sm },
+      4: { id: req.body.medBattery, quantity: req.body.quantity_med },
+      5: { id: req.body.lgBattery, quantity: req.body.quantity_lg },
+      6: { id: req.body.xlBattery, quantity: req.body.quantity_xl }
     };
     // removes items that weren't selected
     for (const key in batteries) {
@@ -65,8 +68,6 @@ module.exports = (pool, client) => {
         delete batteries[key];
       }
     }
-
-    console.log("🦋 ~ batteries keys", Object.keys(batteries).length);
 
     if (!req.body.name || !req.body.phone || Object.keys(batteries).length === 0) { return res.status(403).send("Name, phone, or item selection are not valid!"); };
 
