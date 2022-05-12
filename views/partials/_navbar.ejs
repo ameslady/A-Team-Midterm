@@ -7,17 +7,17 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="/admin">Admin (Testing)</a>
+      <% if (orderSession) { %>
+      <a href="/orders/<%= orderSession %>">
+        <button type="button" class="btn btn-link">Track Order #<%= orderSession %></button>
+      </a>
+      <% }; %>
     </div>
   </div>
   <div class="navbar-nav ml-auto" id="place_order_button">
-    <% if (orderSession) { %>
-    <a class="nav-item nav-link" href="/orders/<%= orderSession %>">
-      <button id="completeOrder" type="submit" class="btn btn-outline-light">Track Order #<%= orderSession %></button>
-    </a>
-    <% }; %>
 
     <% if (!orderSession) { %>
-    <button type="button" class="btn btn-link"><img src="images/order-now.png"/></button>
+    <button type="button" class="btn btn-link"><img src="images/order-now-white.png"/></button>
     <% }; %>
   </div>
 </nav>

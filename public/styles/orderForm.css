@@ -9,8 +9,8 @@
   margin: auto;
   text-align: center;
   background: transparent;
-  color: #2F2B34;
-  border: 3px solid #2F2B34;
+  color: #212529;
+  border: 3px solid #212529;
 }
 
 .form-group {
@@ -20,10 +20,10 @@
 #formCard button{
   margin-top: 3em;
   background-color: #B9D6D5;
-  border: 2px solid #2F2B34;
+  border: 2px solid #212529;
 }
 
 #formCard button:hover {
-  color: black;
+  color: #212529;
   transform: translateY(-2px);
 }
