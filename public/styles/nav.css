@@ -8,13 +8,17 @@ nav img {
 }
 
 .navbar-brand {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   font-size: 50px;
   margin: 20px;
 }
 
 .navbar-nav {
   margin-right: 30px;
+}
+
+#place_order_button {
+  color: white;
 }
 
 #place_order_button:hover {
