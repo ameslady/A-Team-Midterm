@@ -1,6 +1,7 @@
 .menuContainer {
   text-align: center;
   margin: 30px;
+  margin-bottom: 100px;
 }
 
 .menuContainer img {
@@ -15,6 +16,10 @@
   background-color: #2F2B34;
   color: white;
   border-radius: 10px;
+}
+
+.menuContainer .card:hover {
+  box-shadow: 10px 5px 5px #B9D6D5;
 }
 
 .card-title {

@@ -1,5 +1,6 @@
 #orderForm {
   padding-top: 50px;
+  margin-bottom: 100px;
 }
 
 #formCard {
@@ -19,8 +20,10 @@
 #formCard button{
   margin-top: 3em;
   background-color: #B9D6D5;
+  border: 2px solid #2F2B34;
 }
 
 #formCard button:hover {
+  color: black;
   transform: translateY(-2px);
 }
