@@ -12,15 +12,13 @@
   </div>
 
   <div class="navbar-nav ml-auto">
-
     <% if (orderSession) { %>
       <a id="trackOrder" href="/orders/<%= orderSession %>" class="btn btn-outline-light" role="button">Track Your Order #<%= orderSession %></a>
     <% }; %>
-
     <div id="place_order_button">
       <% if (!orderSession) { %>
       <button type="button" class="btn btn-link"><img src="images/order-now-white.png"/></button>
     <% }; %>
+    </div>
   </div>
-</div>
 </nav>

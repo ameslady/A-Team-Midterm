@@ -14,14 +14,19 @@
   border-radius: 8px;
 }
 
+#orderForm .card {
+  background-color: #212529;
+  color: white;
+}
+
 .form-group {
   margin: 1em;
 }
 
-#formCard button{
+#formCard button {
   margin-top: 3em;
   font-family: "Orbitron", sans-serif;
-  border: 3px solid #212529;
+  border: 3px solid white;
 }
 
 #formCard button:hover {

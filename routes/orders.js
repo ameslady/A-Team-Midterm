@@ -1,15 +1,10 @@
 const express = require('express');
 const router = express.Router();
-// hello world
+
 module.exports = (pool, client) => {
-  // Pulls a specific customers order details and display on order #id page
+  // pulls a specific customers order details and displays on order #id page
   router.get("/:id", (req, res) => {
     const orderSession = req.session.order_id;
-
-    // checks for valid session
-    if (!orderSession || orderSession !== Number(req.params.id)) {
-      return res.status(400).send("Unauthorized access!");
-    };
 
     const orderDetails =
     pool.query(`SELECT orders.id, orders.created_at, sum(batteries.prep_time) as total_prep, sum(batteries.cost * battery_orders.quantity) as total, orders.active
@@ -25,6 +20,11 @@ module.exports = (pool, client) => {
     FROM batteries
     JOIN battery_orders ON batteries.id = battery_id
     WHERE battery_orders.order_id = ${req.params.id};`);
+
+    // checks for valid session
+    if (!orderSession || orderSession !== Number(req.params.id)) {
+      return res.status(400).send("Unauthorized access!");
+    };
 
     Promise.all([orderDetails, orderItems])
       .then(data => {
@@ -49,7 +49,6 @@ module.exports = (pool, client) => {
   });
 
   router.post("/", (req, res) => {
-
     const addCustomerQuery = `INSERT INTO customers (name, phone_number) VALUES ($1, $2) RETURNING *;`;
     const createOrderQuery = `INSERT INTO orders (customer_id) VALUES ($1) RETURNING *;`;
     const matchBatteryOrder = `INSERT INTO battery_orders (battery_id, order_id, quantity) VALUES ($1, $2, $3) RETURNING *;`;
@@ -62,6 +61,7 @@ module.exports = (pool, client) => {
       5: { id: req.body.lgBattery, quantity: req.body.quantity_lg },
       6: { id: req.body.xlBattery, quantity: req.body.quantity_xl }
     };
+
     // removes items that weren't selected
     for (const key in batteries) {
       if (!batteries[key].id) {
@@ -69,6 +69,7 @@ module.exports = (pool, client) => {
       }
     }
 
+    // ensure order form is accurately filled out
     if (!req.body.name || !req.body.phone || Object.keys(batteries).length === 0) { return res.status(403).send("Name, phone, or item selection are not valid!"); };
 
     pool.query(addCustomerQuery, [`${req.body.name}`, `${req.body.phone}`])

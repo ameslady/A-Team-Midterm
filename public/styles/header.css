@@ -2,13 +2,11 @@ header {
   height: 700px;
   width: auto;
   background-image: url("../images/header-img-crop.jpeg");
-  opacity: 0.8;
 }
 
 .heroHeader h2 {
   font-family: "Roboto", sans-serif;
   color: white;
-  margin-top: 250px;
+  margin-top: 300px;
   font-size: 90px;
-  opacity: 1.0 !important;
 }
