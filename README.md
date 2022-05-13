@@ -51,7 +51,7 @@ Battery ordering/pick-up experience for a fictitious restaurant catered to hungr
   * Prep time count down
 
 - Admin
-  * Display active orders as individual cards (rather than in a table) and 
+  * Display active orders as individual cards (rather than in a table)
   * Drag & drop orders to the completed section
 
 - Authentication & Security
