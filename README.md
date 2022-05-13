@@ -5,7 +5,7 @@ Battery ordering/pick-up experience for a fictitious restaurant catered to hungr
 
 ## Final Product
 
-![Home Page Header](docs/menu-header.png?raw=true "Header")
+![Home Page Header](public/docs/menu-header.png?raw=true "Header")
 
 ## Getting Started
 
