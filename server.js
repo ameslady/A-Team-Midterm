@@ -2,7 +2,7 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -47,7 +47,6 @@ const adminRoutes = require("./routes/admin");
 app.use("/", productsRoutes(pool));
 app.use("/orders", orderRoutes(pool, client));
 app.use("/admin", adminRoutes(pool, client));
-
 
 
 app.listen(PORT, () => {
