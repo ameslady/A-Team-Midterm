@@ -5,7 +5,7 @@ Battery ordering/pick-up experience for a fictitious restaurant catered to hungr
 
 ## Final Product
 
-*{add UI images here at the end}*
+![Home Page Header](docs/menu-header.png?raw=true "Header")
 
 ## Getting Started
 
@@ -35,17 +35,12 @@ Battery ordering/pick-up experience for a fictitious restaurant catered to hungr
 
 - Node 
 - NPM 
-- PG 
 - Express 
-- Morgan 
 - EJS
+- PG 
+- Morgan 
 - Chalk
 - dotenv
-- SASS
 - Body Parser
 - Cookie Session
 - Twilio
-
-## Roadmap
-
-...
