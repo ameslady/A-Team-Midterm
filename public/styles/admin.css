@@ -11,14 +11,9 @@
 .adminOrders {
   width: 80em;
   text-align: center;
-  /* color: #212529; */
+  color: #212529;
   border: 3px solid #212529;
   border-radius: 8px;
-}
-
-.adminOrder .card {
-  background-color: #212529;
-  color: white;
 }
 
 .adminOrders h2 {
