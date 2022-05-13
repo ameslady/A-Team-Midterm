@@ -12,12 +12,21 @@
   width: 80em;
   text-align: center;
   color: #212529;
-  border: 3px solid #212529;
-  border-radius: 8px;
+  border: 5px solid #734c64;
+  border-radius: 9px;
+}
+
+.adminOrders .card {
+  background: #957584;
+  color: white;
 }
 
 .adminOrders h2 {
   font-family: "Orbitron", sans-serif;
+}
+
+.adminOrders table {
+  color: white;
 }
 
 .prepTime {

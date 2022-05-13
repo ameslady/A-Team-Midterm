@@ -36,7 +36,7 @@
   <%- include('partials/_navbar') %>
 
   <div class="thank-you-img">
-    <img src="/images/thank-you.png" alt="thank-you-image">
+    <img class="imgTest" src="/images/thank-you.png" alt="thank-you-image">
   </div>
 
   <main class="customerOrderContainer">
@@ -44,7 +44,7 @@
         <div class="card">
           <img class="card-img-top" id="map" src="/images/robot_battery_cafe_googlemaps.png" alt="Card image cap"/>
           <div class="card-body">
-            <h3 class="card-title">Pick-Up Location</h3>
+            <h2 class="card-title">Pick-Up Location</h2>
                <p>1 Duckworth St, St. John's, NL A1C 1E3</p>
           </div>
         </div>
@@ -53,13 +53,13 @@
     <section class="orderDetails">
       <div class="card">
           <div class="card-body">
-            <h3 class="card-title">Your Order # <%= orderDetails[orderSession].id %></h3>
+            <h2 class="card-title">Your Order Details</h2>
+            <p class="orderID" >Order #<%= orderDetails[orderSession].id %></p>
 
             <table class="table">
               <thead>
             <tr>
-              <th scope="col">Battery ID</th>
-              <th scope="col">Name</th>
+              <th scope="col">Menu Item</th>
               <th scope="col">Quantity</th>
               <th scope="col">Price Per Product</th>
             </tr>
@@ -67,7 +67,6 @@
           <tbody>
             <tr>
               <% for(const order in orderItems) { %>
-                <td><%= orderItems[order].id %></td>
                 <td><%= orderItems[order].name %></td>
                 <td>x <%= orderItems[order].quantity %></td>
                 <td>$<%= orderItems[order].price / 100 %></td>
@@ -78,6 +77,7 @@
             <div class="orderTotal">
               <span><strong>Total:</strong> $<%= orderDetails[orderSession].total / 100 %></span>
             </div>
+            <hr class="solid">
         </div>
 
         <div class="card-footer" id="detailsFooter">

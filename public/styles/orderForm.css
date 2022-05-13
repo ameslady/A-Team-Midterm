@@ -1,11 +1,18 @@
 #orderForm {
-  padding-top: 50px;
+  padding-top: 80px;
   margin-bottom: 100px;
+}
+
+#orderForm .card {
+  color: white;
+  background-color: #212529;
+  padding-right: 3em;
+  padding-left: 3em;
 }
 
 #formCard {
   width: 900px;
-  height: 400px;
+  height: 450px;
   margin: auto;
   text-align: center;
   background: white;
@@ -14,21 +21,23 @@
   border-radius: 8px;
 }
 
-#orderForm .card {
-  background-color: #212529;
-  color: white;
+#formCard button {
+  margin-top: 3em;
+  font-family: "Orbitron", sans-serif;
+  color: #90D8F9;
+  border: 3px solid #90D8F9;
+}
+
+#formCard button:hover {
+  color: #90D8F9;
+  background: transparent;
+  transform: translateY(-2px);
 }
 
 .form-group {
   margin: 1em;
 }
 
-#formCard button {
-  margin-top: 3em;
-  font-family: "Orbitron", sans-serif;
-  border: 3px solid white;
-}
-
-#formCard button:hover {
-  transform: translateY(-2px);
+.order-error {
+  padding: 2px;
 }

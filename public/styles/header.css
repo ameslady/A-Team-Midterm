@@ -2,6 +2,9 @@ header {
   height: 700px;
   width: auto;
   background-image: url("../images/header-img-crop.jpeg");
+  background-color: #a4d7f5;
+  background-blend-mode: multiply;
+  opacity: 0.9;
 }
 
 .heroHeader h2 {

@@ -70,7 +70,7 @@ module.exports = (pool, client) => {
     }
 
     // ensure order form is accurately filled out
-    if (!req.body.name || !req.body.phone || Object.keys(batteries).length === 0) { return res.status(403).send("Name, phone, or item selection are not valid!"); };
+    if (!req.body.name || !req.body.phone || Object.keys(batteries).length === 0) { return res.status(400).send("Name, phone, or item selection are not valid!"); };
 
     pool.query(addCustomerQuery, [`${req.body.name}`, `${req.body.phone}`])
       // adds the new customers to db

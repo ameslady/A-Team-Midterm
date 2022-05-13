@@ -42,7 +42,7 @@
     <section class="adminOrders">
     <div class="card">
       <div class="card-body">
-        <h2 class="card-title">Active Orders</h2>
+        <h2 class="card-title">Active Orders ⚙️</h2>
         <br>
           <div>
             <table class="table">
@@ -67,11 +67,11 @@
                     <form action="/admin/<%= activeOrders[order].id %>/update" method="POST">
                       <td class="prepTime">
                         <input class="form-control" type="prepTime" name="prepTime"/>
-                        <button type="submit" class="btn btn-outline-dark">Edit</button>
+                        <button type="submit" class="btn btn-outline-light">Edit</button>
                       </td>
                     </form>
                     <form action="/admin/<%= activeOrders[order].id %>" method="POST">
-                      <td><button type="submit" class="btn btn-outline-dark">Ready for Pick-Up</button></td>
+                      <td><button type="submit" class="btn btn-outline-light">Ready for Pick-Up</button></td>
                     </form>
                 </tr>
                 <% } %>
@@ -86,7 +86,7 @@
   <section class="adminOrders">
     <div class="card">
       <div class="card-body">
-        <h2 class="card-title">Complete Orders</h2>
+        <h2 class="card-title">Complete Orders ☑️</h2>
         <br>
           <div>
             <table class="table">

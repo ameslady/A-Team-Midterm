@@ -17,29 +17,37 @@ nav img {
   margin-right: 30px;
 }
 
-#trackOrder {
-  font-family: "Orbitron", sans-serif;
-  border: 3px solid white;
-}
-
-#trackOrder:hover {
-  transform: translateY(-2px);
-}
-
-#hiddenAdmin {
-  color: #212529
+#place_order_button img {
+  width: 90px;
 }
 
 #place_order_button:hover {
   transform: translateY(-2px);
 }
 
+#trackOrder {
+  font-family: "Orbitron", sans-serif;
+  color: #90D8F9;
+  border: 3px solid #90D8F9;
+}
+
+#trackOrder:hover {
+  color: #90D8F9;
+  background: transparent;
+  transform: translateY(-2px);
+}
+
 #admin-text {
   font-family: "Orbitron", sans-serif;
   color: white;
-  margin: auto;
+  margin-top: 15px;
+}
+
+#hiddenAdmin {
+  color: #212529;
 }
 
 #padlock {
+  margin-left: 5px;
   width: 50px;
 }

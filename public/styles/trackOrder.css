@@ -5,12 +5,13 @@
   column-gap: 2em;
   max-height: 1000px;
   margin-top: 0px;
+  margin-bottom: 100px;
 }
 
 .customerOrderContainer .card-body {
   font-family: "Josefin", sans-serif;
 }
-.customerOrderContainer h3 {
+.customerOrderContainer h2 {
   font-family: "Orbitron", sans-serif;
   margin-bottom: 1em;
 }
@@ -21,17 +22,23 @@
 }
 
 .orderDetails .card {
-  background-color: #212529;
   color: white;
-  height: 515px;
+  background-color: #212529;
+  border: 5px solid #212529;
+  border-radius: 9px;
+  height: 530px;
 }
 
 .orderDetails table {
   color: white;
 }
+.orderDetails h2 {
+  margin-bottom: 0px;
+ }
 
 .orderDetails .orderTotal {
  font-size: 20px;
+ /* font-family: "Orbitron", sans-serif; */
 }
 
 #detailsFooter {
@@ -42,8 +49,10 @@
 }
 
 .restaurantDetails .card {
-  background-color: #212529;
   color: white;
+  background-color: #212529;
+  border: 5px solid #212529;
+  border-radius: 9px;
 }
 
 #map {
@@ -56,6 +65,6 @@
   margin-bottom: 0px;
 }
 
-.thank-you-img  img{
+.thank-you-img  img {
   width: 400px;
 }

@@ -70,6 +70,7 @@ module.exports = (pool, client) => {
             from: '+12073062186', // From a valid Twilio number
           })
           .then((message) => console.log('Twilio Text sent:', message.sid));
+
       })
       .catch(err => {
         res

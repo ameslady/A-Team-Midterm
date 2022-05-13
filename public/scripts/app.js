@@ -21,20 +21,23 @@ $(document).ready(function() {
 
   // checks if there are values in the name & phone text area
   $("#completeOrder").on('click', function(event) {
-    const textArea = $('input');
-    const inputText = textArea.val();
+    const inputName = $('#input-name').val();
+    const inputNum = $('#input-num').val();
+    const ck_box = $('input[type="checkbox"]:checked').length;
 
-    // shows error message
-    if (!inputText) {
+    // invalid name or number error
+    if (!inputName || !inputNum || ck_box === 0) {
       event.preventDefault();
-      const emptyError = $('.order-error').text(`⚠️ Don't forget your Name & Phone Number!`);
+      const emptyError = $('.order-error').text(`⚠️  Don't forget your name, phone number and a menu selection.`);
       emptyError.hide();
       emptyError.css({
-        'color': '#FFFFFF',
+        'color': '#da4a54',
         'margin-top': '10px',
         'display': 'inline-block',
+        'font-weight': 'bold'
       }).slideDown(1500).fadeOut(4000);
     }
+
   });
 
 });

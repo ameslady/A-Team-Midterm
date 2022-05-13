@@ -19,7 +19,7 @@
 }
 
 .menuContainer .card:hover {
-  box-shadow: 10px 5px 5px #B9D6D5;
+  box-shadow: 10px 5px 5px lightgray;
 }
 
 .card-title {
