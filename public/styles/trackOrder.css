@@ -1,41 +1,9 @@
-/* .orderDetails {
-  margin-top: 1em;
-}
-
-.orderDetails .card {
-  width: 900px;
-  height: 500px;
-  margin: auto;
-  text-align: center;
-  background-color: #212529;
-  color: white;
-  border-radius: 10px;
-}
-
-.orderDetails p {
+.customerOrderContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  margin: 1em;
-}
-
-.orderDetails table {
-  color: white;
-}
-
-.locationDetails .card {
-  width: 20rem;
-  margin: auto;
-  margin-top: 1em;
-} */
-
-
-.customerOrderContainer {
-  display:flex;
-  flex-direction: row;
-  align-items: center;
   margin: auto;
   column-gap: 2em;
+  max-height: 1000px;
 }
 
 .customerOrderContainer .card-body {
@@ -49,14 +17,14 @@
 .orderDetails {
   width: 60em;
   text-align: center;
-  border: 3px solid #212529;
-  border-radius: 8px;
 }
 
 .orderDetails .card {
   background-color: #212529;
   color: white;
+  height: 515px;
 }
+
 
 .orderDetails table {
   color: white;
@@ -66,17 +34,11 @@
  font-size: 20px;
 }
 
-.detailsFooter {
+#detailsFooter {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 1em;
   font-size: 20px;
-}
-
-.restaurantDetails {
-  border: 3px solid #212529;
-  border-radius: 8px;
 }
 
 .restaurantDetails .card {
@@ -86,4 +48,13 @@
 
 #map {
   width: 500px;
+}
+
+.thank-you-img {
+  margin: auto;
+  margin-top: 120px;
+}
+
+.thank-you-img  img{
+  width: 400px;
 }

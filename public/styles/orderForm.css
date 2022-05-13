@@ -20,11 +20,10 @@
 
 #formCard button{
   margin-top: 3em;
-  background-color: #B9D6D5;
-  border: 2px solid #212529;
+  font-family: "Orbitron", sans-serif;
+  border: 3px solid #212529;
 }
 
 #formCard button:hover {
-  color: #212529;
   transform: translateY(-2px);
 }

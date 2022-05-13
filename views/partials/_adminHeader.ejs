@@ -1,9 +1,20 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
     <img src="images/logo.png"/>
     <a class="navbar-brand" href="/">Robo Battery Cafe</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a id="hiddenAdmin" class="nav-item nav-link" href="/admin">Admin (Testing)</a>
+      </div>
+    </div>
+
+    <div class="navbar-nav ml-auto">
+      <h4 id="admin-text">ADMIN</h4>
+      <img id="padlock" src="images/padlock_white.png"/>
+    </div>
   </nav>
 </header>
