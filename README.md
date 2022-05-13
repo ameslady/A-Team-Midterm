@@ -5,7 +5,7 @@ Battery ordering/pick-up experience for a fictitious restaurant catered to hungr
 
 ## Final Product
 
-![Home Page Header](public/docs/menu-header.png?raw=true "Header")
+![Home Page Header](public/docs/header.png?raw=true "Header")
 ![Home Page Menu](public/docs/menu.png?raw=true "Menur")
 ![Order Form](public/docs/orderForm.png?raw=true "Order Form")
 ![Track Order Page](public/docs/trackOrder.png?raw=true "Track Order")
@@ -37,14 +37,28 @@ Battery ordering/pick-up experience for a fictitious restaurant catered to hungr
 
 ## Dependencies
 
-- Node 
-- NPM 
-- Express 
-- EJS
-- PG 
-- Morgan 
-- Chalk
-- dotenv
-- Body Parser
-- Cookie Session
-- Twilio
+* Body-parser
+* Chalk
+* Cookie Session
+* dotenv
+* EJS
+* Express
+* Morgan
+* PG
+* Twilio
+
+## Roadmap
+
+- Menu cards to display description
+  * Flips menu cards on click to display additional product information
+  * Select product cards to add to order rather than select checkbox in form
+
+- Orders
+  * Customer can cancel their order
+  * Integrate a sandbox payment provider (e.g. Stripe)
+
+- Admin
+  * Display active orders as individual cards (rather than in a table) and 
+  * Drag & drop orders to the completed section
+
+- Add a footer w/ social links
