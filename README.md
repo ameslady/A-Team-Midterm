@@ -6,6 +6,10 @@ Battery ordering/pick-up experience for a fictitious restaurant catered to hungr
 ## Final Product
 
 ![Home Page Header](public/docs/menu-header.png?raw=true "Header")
+![Home Page Menu](public/docs/menu.png?raw=true "Menur")
+![Order Form](public/docs/orderForm.png?raw=true "Order Form")
+![Track Order Page](public/docs/trackOrder.png?raw=true "Track Order")
+![Admin Page](public/docs/admin.png?raw=true "Admin")
 
 ## Getting Started
 
