@@ -85,8 +85,6 @@ module.exports = (pool, client) => {
         for (const battery in batteries) {
           pool.query(matchBatteryOrder, [`${batteries[battery].id}`, `${newOrder.rows[0].id}`, `${batteries[battery].quantity}`]);
         }
-        req.session.order_id = newOrder.rows[0].id; // saves order id as a session cookie
-        res.redirect(`/orders/${newOrder.rows[0].id}`);
 
         // sends a text to the customer
         client.messages
@@ -106,6 +104,11 @@ module.exports = (pool, client) => {
         })
         .then((message) => console.log('Twilio Text sent:', message.sid));
 
+        return newOrder.rows[0].id;
+      })
+      .then((orderID) => {
+        req.session.order_id = orderID; // saves order id as a session cookie
+        res.redirect(`/orders/${orderID}`);
       })
       .catch(err => {
         res.status(500)
