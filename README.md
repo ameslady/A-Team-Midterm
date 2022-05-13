@@ -49,7 +49,7 @@ Battery ordering/pick-up experience for a fictitious restaurant catered to hungr
 
 ## Roadmap
 
-- Menu cards to display description
+- Menu 
   * Flips menu cards on click to display additional product information
   * Select product cards to add to order rather than select checkbox in form
 
