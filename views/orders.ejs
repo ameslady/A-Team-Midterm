@@ -28,109 +28,62 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
 
   <title>Order | Robo Battery Cafe</title>
-  <link rel="shortcut icon" type="image/png" href="images/favicon.ico">
+  <link rel="shortcut icon" type="image/png" href="/images/favicon.ico">
 </head>
 
 <body class="d-flex flex-column min-vh-100">
 
   <%- include('partials/_navbar') %>
 
-  <!-- <div class="locationDetails">
-    <div class="card">
-      <img class="card-img-top" id="googleImage" src="/images/robot_battery_cafe_googlemaps.png"/>
-      <div class="card-body">
-        <h5 class="card-title">Our Location</h5>
-        <p class="card-text">1 Duckworth St, St. John's, NL A1C 1E3</p>
-      </div>
-    </div>
-  </div> -->
+  <div class="thank-you-img">
+    <img src="/images/thank-you.png" alt="thank-you-image">
+  </div>
 
-    <!-- <div class="orderDetails">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Your Order # <%= orderDetails[orderSession].id %></h5>
-            <hr class="solid">
-              <table class="table">
-                  <thead>
-                <tr>
-                  <th scope="col">Battery ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Quantity</th>
-                  <th scope="col">Price Per Product</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <% for(const order in orderItems) { %>
-                    <td><%= orderItems[order].id %></td>
-                    <td><%= orderItems[order].name %></td>
-                    <td>x <%= orderItems[order].quantity %></td>
-                    <td>$<%= orderItems[order].price / 100 %></td>
-                  </tr>
-                  <% } %>
-                </tbody>
-              </table>
-
-              <span><strong>Total:</strong> $<%= orderDetails[orderSession].total / 100 %></span>
-
-            <p class="card-text">
-              <span><strong>Ordered at:</strong> <%= orderDetails[orderSession].created_at.toTimeString().slice(0, 5) %></span>
-              <span><strong>Prep Time:</strong> ~<%= orderDetails[orderSession].total_prep %> mins</span>
-              <span><strong>Status:</strong> In-progress</span>
-            </p>
-          </div>
-        </div>
-      </div> -->
-
-
-    <main class="customerOrderContainer">
+  <main class="customerOrderContainer">
       <section class="restaurantDetails">
         <div class="card">
           <img class="card-img-top" id="map" src="/images/robot_battery_cafe_googlemaps.png" alt="Card image cap"/>
           <div class="card-body">
-            <h3 class="card-title">Our Location</h3>
+            <h3 class="card-title">Pick-Up Location</h3>
                <p>1 Duckworth St, St. John's, NL A1C 1E3</p>
           </div>
         </div>
-      </section>
-
+    </section>
     <br>
-
     <section class="orderDetails">
       <div class="card">
-        <div class="card-body">
-          <h3 class="card-title">Your Order # <%= orderDetails[orderSession].id %></h3>
+          <div class="card-body">
+            <h3 class="card-title">Your Order # <%= orderDetails[orderSession].id %></h3>
 
-          <table class="table">
-            <thead>
-          <tr>
-            <th scope="col">Battery ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price Per Product</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <% for(const order in orderItems) { %>
-              <td><%= orderItems[order].id %></td>
-              <td><%= orderItems[order].name %></td>
-              <td>x <%= orderItems[order].quantity %></td>
-              <td>$<%= orderItems[order].price / 100 %></td>
+            <table class="table">
+              <thead>
+            <tr>
+              <th scope="col">Battery ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price Per Product</th>
             </tr>
-            <% } %>
-          </tbody>
-        </table>
-
-          <div class="orderTotal">
-            <span><strong>Total:</strong> $<%= orderDetails[orderSession].total / 100 %></span>
-          </div>
-
-          <div class="detailsFooter">
-            <span><strong>Ordered at:</strong> <%= orderDetails[orderSession].created_at.toTimeString().slice(0, 5) %></span>
-            <span><strong>Prep Time:</strong> ~ <%= orderDetails[orderSession].total_prep %> mins</span>
-            <span><strong>Status:</strong> In-progress</span>
+          </thead>
+          <tbody>
+            <tr>
+              <% for(const order in orderItems) { %>
+                <td><%= orderItems[order].id %></td>
+                <td><%= orderItems[order].name %></td>
+                <td>x <%= orderItems[order].quantity %></td>
+                <td>$<%= orderItems[order].price / 100 %></td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+            <div class="orderTotal">
+              <span><strong>Total:</strong> $<%= orderDetails[orderSession].total / 100 %></span>
+            </div>
         </div>
+
+        <div class="card-footer" id="detailsFooter">
+          <span><strong>Ordered at:</strong> <%= orderDetails[orderSession].created_at.toTimeString().slice(0, 5) %></span>
+          <span><strong>Prep Time:</strong> ~ <%= orderDetails[orderSession].total_prep %> mins</span>
+          <span><strong>Status:</strong> In-progress</span>
         </div>
       </div>
     </section>
