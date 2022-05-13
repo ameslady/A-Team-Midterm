@@ -47,7 +47,7 @@ Battery ordering/pick-up experience for a fictitious restaurant catered to hungr
 - Orders
   * Customer can cancel their order
   * Integrate a sandbox payment provider (e.g. Stripe)
-  * Switch time to 12 hour clock as add AM/PM
+  * Switch time to 12 hour clock and add AM/PM
   * Prep time count down
 
 - Admin
