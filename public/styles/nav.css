@@ -1,8 +1,5 @@
 nav {
   height: 120px;
-  position: absolute;
-  top:0;
-  width: 100%;
 }
 
 nav img {
@@ -20,6 +17,28 @@ nav img {
   margin-right: 30px;
 }
 
+#trackOrder {
+  font-family: "Orbitron", sans-serif;
+  border: 3px solid white;
+}
+
+#trackOrder:hover {
+  transform: translateY(-2px);
+}
+
+#hiddenAdmin {
+  color: #212529
+}
+
 #place_order_button:hover {
   transform: translateY(-2px);
+}
+
+#admin-text {
+  font-family: "Orbitron", sans-serif;
+  color: white;
+  margin: auto;
+}
+#padlock {
+  width: 50px;
 }
