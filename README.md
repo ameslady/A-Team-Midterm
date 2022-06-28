@@ -69,4 +69,4 @@ Battery ordering/pick-up experience for a fictitious restaurant catered to hungr
 
 - Add a footer w/ social links
 
-- Restyle front-end using Material UI
+- Refactor front-end to use React and Material UI
